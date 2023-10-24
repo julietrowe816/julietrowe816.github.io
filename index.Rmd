@@ -50,3 +50,8 @@ Here's a pretty flower in Riverside Park:
 Also here's a cookie and cake
 
 ![](images/cookie.jpg)
+
+
+# Other stuff on this page
+
+Definitely there is [plotly](plotly.html) stuff! 
