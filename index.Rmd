@@ -9,7 +9,6 @@ output:
 # Welcome to my website
 
 
-
 You can add text
 
 * and lists
