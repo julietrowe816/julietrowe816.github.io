@@ -6,11 +6,9 @@ output:
     toc_float: true
 ---
 
-# This is Juliet's awesome website
+# Welcome to my website
 
-Here's a gif of elmo
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
 
 You can add text
 

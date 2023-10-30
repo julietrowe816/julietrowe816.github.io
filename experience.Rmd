@@ -1,0 +1,11 @@
+---
+title: "Juliet's website!"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# See my professional and academic experience below
+
+![](resume.pdf)
