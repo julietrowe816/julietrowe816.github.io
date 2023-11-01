@@ -6,6 +6,8 @@ output:
     vertical_layout: fill
 ---
 
+# Load packages and data
+
 ```{r setup, include=FALSE}
 library(flexdashboard)
 
@@ -13,18 +15,25 @@ library(tidyverse)
 library(plotly)
 library(p8105.datasets)
 
-data("nyc_airbnb")
-
-nyc_airbnb = 
-  nyc_airbnb |>
-  mutate(stars = review_scores_location / 2) |>
-  select(borough = neighbourhood_group, neighbourhood, stars, price, room_type, lat, long) |>
-  drop_na(stars) |>
-  filter(
-    borough == "Manhattan",
-    room_type == "Entire home/apt",
-    price %in% 100:500)
+data("rest_inspec")
 ```
+
+Data cleaning
+
+```{r}
+rest_inspec <- rest_inspec |>
+  janitor::clean_names() |>
+  separate(inspection_date, into = c("year", "month", "day"), sep = "-")
+  
+rest_inspec_filtered <- rest_inspec |>
+  filter(year>=2013) |>
+  group_by(boro, year) |>
+  mutate(average_score = mean(score, na.rm = TRUE))
+
+
+```
+
+Cleaned names, separated inspection_date variable into day, month, and year, and filtered to only years 2013 and after in order to narrow down the dataset a bit. Also added a variable for average score for each boro each year.
 
 Column {data-width=650}
 -----------------------------------------------------------------------
@@ -32,9 +41,9 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
-nyc_airbnb |>
-  mutate(neighbourhood = fct_reorder(neighbourhood, price)) |>
-  plot_ly(y = ~price, color = ~ neighbourhood, type = "box")
+rest_inspec_filtered |>
+  filter(boro != "Missing") |>
+  plot_ly(y = ~score, color = ~ boro, type = "box")
 ```
 
 Column {data-width=350}
@@ -43,18 +52,19 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
-nyc_airbnb |>
-  mutate(text_label = str_c("Price: $", price, "\nRating: ", stars)) |>
-  plot_ly(
-    x = ~lat, y = ~long, color= ~price, text = ~text_label,
-    type = "scatter", mode = "markers")
+rest_inspec_filtered |>
+  filter(cuisine_description %in% c("American", "Italian", "Korean", "Thai", "Chinese", "Seafood", "Portuguese", "Mediterranean", "Sandwiches", "Spanish", "African", "Irish", "Mexican", "Delicatessen")) |>
+    filter(boro != "Missing") |>
+  plot_ly(x = ~cuisine_description, color = ~boro, type = "histogram")
+
+
 ```
 
 ### Chart C
 
 ```{r}
-nyc_airbnb |>
-  mutate(neighbourhood = fct_reorder(neighbourhood, price)) |>
-  plot_ly(y = ~price, color = ~ neighbourhood, type = "box")
+rest_inspec_filtered |>
+  filter(boro != "Missing") |>
+  plot_ly(x= ~year, y = ~average_score, color= ~boro, type="bar")
 ```
 
