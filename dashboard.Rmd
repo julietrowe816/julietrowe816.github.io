@@ -8,7 +8,7 @@ output:
 
 # Load packages and data
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 library(flexdashboard)
 
 library(tidyverse)
@@ -68,10 +68,5 @@ rest_inspec |>
   sample_n(size = 10000, replace = TRUE) |>
   filter(boro != "Missing") |>
   plot_ly(x= ~inspection_date, y = ~score, color= ~boro, type="scatter", marker = list(size = 3, opacity = 0.5))
-```
-
-
-```{r}
-rmarkdown::render("dashboard.Rmd", output_format = "flexdashboard::flex_dashboard")
 ```
 
