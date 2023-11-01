@@ -67,7 +67,7 @@ rest_inspec_filtered |>
 rest_inspec |>
   sample_n(size = 10000, replace = TRUE) |>
   filter(boro != "Missing") |>
-  plot_ly(x= ~inspection_date, y = ~score, color= ~boro, type="scatter", marker = list(size = 2, opacity = 0.5))
+  plot_ly(x= ~inspection_date, y = ~score, color= ~boro, type="scatter", marker = list(size = 3, opacity = 0.5))
 ```
 
 
