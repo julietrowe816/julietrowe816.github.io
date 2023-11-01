@@ -43,8 +43,9 @@ Column {data-width=650}
 
 ```{r}
 rest_inspec_filtered |>
-  filter(boro != "Missing") |>
-  plot_ly(y = ~score, color = ~ boro, type = "box")
+  filter(cuisine_description %in% c("American", "Italian", "Korean", "Thai", "Chinese", "Seafood", "Portuguese", "Mediterranean", "Sandwiches", "Spanish", "African", "Irish", "Mexican", "Delicatessen")) |>
+    filter(boro != "Missing") |>
+  plot_ly(x = ~cuisine_description, color = ~boro, type = "histogram")
 ```
 
 Column {data-width=350}
@@ -54,10 +55,8 @@ Column {data-width=350}
 
 ```{r}
 rest_inspec_filtered |>
-  filter(cuisine_description %in% c("American", "Italian", "Korean", "Thai", "Chinese", "Seafood", "Portuguese", "Mediterranean", "Sandwiches", "Spanish", "African", "Irish", "Mexican", "Delicatessen")) |>
-    filter(boro != "Missing") |>
-  plot_ly(x = ~cuisine_description, color = ~boro, type = "histogram")
-
+  filter(boro != "Missing") |>
+  plot_ly(y = ~score, color = ~ boro, type = "box")
 
 ```
 
