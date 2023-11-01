@@ -9,16 +9,12 @@ output:
 # Welcome to my website
 
 
-You can add text
+My name is Juliet and I'm a second year MPH student at Columbia. 
 
-* and lists
-* with extra bullets
 
-You can *FORMAT* and **bold?**
 
 This is a [link](https://www.google.com/) to a good data science tool. Here's a link to [P8105](https://p8105.com/). Here's a link to the [about](about.html) page
 
-YOu can also still use R!
 
 ```{r}
 library(tidyverse)

@@ -8,4 +8,4 @@ output:
 
 # See my professional and academic experience below
 
-![](resume.pdf)
+![](images/resume.png)

@@ -36,22 +36,23 @@ rest_inspec_filtered <- rest_inspec_year |>
 
 Cleaned names, separated inspection_date variable into day, month, and year, and filtered to only years 2013 and after in order to narrow down the dataset a bit. Also added a variable for average score for each boro each year.
 
-Column {data-width=650}
+Column {data-width=600}
 -----------------------------------------------------------------------
 
-### Chart A
+### Restaurant Inspection Score by Borough, 2013-2017
 
 ```{r}
-rest_inspec_filtered |>
-  filter(cuisine_description %in% c("American", "Italian", "Korean", "Thai", "Chinese", "Seafood", "Portuguese", "Mediterranean", "Sandwiches", "Spanish", "African", "Irish", "Mexican", "Delicatessen")) |>
-    filter(boro != "Missing") |>
-  plot_ly(x = ~cuisine_description, color = ~boro, type = "histogram")
+rest_inspec |>
+  sample_n(size = 10000, replace = TRUE) |>
+  filter(boro != "Missing") |>
+  plot_ly(x= ~inspection_date, y = ~score, color= ~boro, type="scatter", marker = list(size = 3, opacity = 0.5))
+
 ```
 
-Column {data-width=350}
+Column {data-width=400}
 -----------------------------------------------------------------------
 
-### Chart B
+### Average Restaurant Inspection Score by Borough, 2013-2017
 
 ```{r}
 rest_inspec_filtered |>
@@ -60,12 +61,12 @@ rest_inspec_filtered |>
 
 ```
 
-### Chart C
+### Number of Restaurants of Various Cuisine Types by Borough
 
 ```{r}
-rest_inspec |>
-  sample_n(size = 10000, replace = TRUE) |>
-  filter(boro != "Missing") |>
-  plot_ly(x= ~inspection_date, y = ~score, color= ~boro, type="scatter", marker = list(size = 3, opacity = 0.5))
+rest_inspec_filtered |>
+  filter(cuisine_description %in% c("American", "Italian", "Korean", "Thai", "Chinese", "Seafood", "Portuguese", "Mediterranean", "Sandwiches", "Spanish", "African", "Irish", "Mexican", "Delicatessen")) |>
+    filter(boro != "Missing") |>
+  plot_ly(x = ~cuisine_description, color = ~boro, type = "histogram")
 ```
 
