@@ -16,6 +16,7 @@ library(plotly)
 library(p8105.datasets)
 
 data("rest_inspec")
+
 ```
 
 Data cleaning
@@ -66,5 +67,9 @@ rest_inspec_filtered |>
 rest_inspec_filtered |>
   filter(boro != "Missing") |>
   plot_ly(x= ~year, y = ~average_score, color= ~boro, type="bar")
+```
+
+```{r}
+rmarkdown::render("dashboard.Rmd", output_format = "flexdashboard::flex_dashboard")
 ```
 
